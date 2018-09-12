@@ -1,0 +1,7 @@
+.carousel .carousel-item {
+  width: 400px !important;
+}
+
+.carousel {
+  min-height: 900px;
+}
