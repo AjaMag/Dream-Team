@@ -40,4 +40,23 @@ function showPosition(position) {
    })
 }
 
+//Weather API call
+function weatherAPI (position) {
+
+  var queryURL = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&APPID=30ad9365801925ba6147c686f6736863`
+
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  })
+
+  .then(function(response) {
+  console.log(response)
+  var results = response.data;
+  })
+}
+
 getLocation()
+setTimeout(function (){
+  weatherAPI()
+},4000)
