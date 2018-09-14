@@ -3,6 +3,11 @@ var long;
 var db = firebase.database();
 var favs = db.ref("favorites");
 
+$(document).ready(function(){
+  $('.parallax').parallax();
+});
+    
+
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
@@ -89,3 +94,23 @@ function findLocation () {
   var local;
   $.get(`http://dev.virtualearth.net/REST/v1/Locations/${local}?&maxResults=1&key=Ami0rQuZG9aaTceHF0XA2qTY0BWc1D5gUXmI0R1VJ_URY8sHjBb4ksEK85edNRjY`)
 }
+//Weather API call
+function weatherAPI (position) {
+
+  var queryURL = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&APPID=30ad9365801925ba6147c686f6736863`
+
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  })
+
+  .then(function(response) {
+  console.log(response)
+  var results = response.data;
+  })
+}
+
+getLocation()
+setTimeout(function (){
+  weatherAPI()
+},4000)
