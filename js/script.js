@@ -1,6 +1,9 @@
 var lat;
 var long;
 
+var pArr = ['img/cloudy_day.jpg', 'img/sunny_day.jpg', 'img/rainy day.jpg']
+ 
+
 $(document).ready(function(){
   $('.parallax').parallax();
 });
