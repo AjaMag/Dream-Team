@@ -1,9 +1,9 @@
 var lat;
 var long;
 
+//this is for the parallax, which displays today's current weather pic using a key word from the weather API
 var pArr = ['img/cloudy_day.jpg', 'img/sunny_day.jpg', 'img/rainy day.jpg']
  
-
 $(document).ready(function(){
   $('.parallax').parallax();
 });
