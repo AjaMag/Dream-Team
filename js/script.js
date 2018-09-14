@@ -94,7 +94,7 @@ function findLocation () {
   event.preventDefault();
   
   var local = $("#cityName").val();
-  $.get(`http://dev.virtualearth.net/REST/v1/Locations/${local}?&maxResults=1&key=Ami0rQuZG9aaTceHF0XA2qTY0BWc1D5gUXmI0R1VJ_URY8sHjBb4ksEK85edNRjY`)
+  $.get(`https://dev.virtualearth.net/REST/v1/Locations/${local}?&maxResults=1&key=Ami0rQuZG9aaTceHF0XA2qTY0BWc1D5gUXmI0R1VJ_URY8sHjBb4ksEK85edNRjY`)
   .then(function (localResponse) {
     console.log(localResponse);
     lat = localResponse.resourceSets[0].resources[0].point.coordinates[0];
@@ -146,7 +146,7 @@ function findLocation () {
 //Weather API call
 function weatherAPI (position) {
 
-  var queryURL = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&APPID=30ad9365801925ba6147c686f6736863`
+  var queryURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&APPID=30ad9365801925ba6147c686f6736863`
 
   $.ajax({
     url: queryURL,
