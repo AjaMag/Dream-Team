@@ -1,6 +1,11 @@
 var lat;
 var long;
 
+$(document).ready(function(){
+  $('.parallax').parallax();
+});
+    
+
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);

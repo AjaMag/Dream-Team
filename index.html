@@ -11,14 +11,45 @@
 </head>
 <body>
 
-<div class="row" id="carRow">
-  <div class="col s12 m7" >
-    <div class="carousel carousel-slider" id="cardholder" >
 
-    </div>
+
+<div class="parallax-container">
+  <div class="parallax"><img src="./img/beverage-black-coffee-blur-1235717.jpg"></div>
+</div>
+<div class="section white">
+  <div class="row container">
+      <form class="col m12">
+        <div class="row">
+            <h2 class="header">Find Your Trail Here</h2>
+            <p class="grey-text text-darken-3 lighten-3">Enter trail location or city</p>
+          <div class="input-field col s4">
+            <input placeholder="Enter nearest location or city" id="cityName" type="text" class="validate">
+            <label for="cityInput"></label>
+          </div>
+          <a class="waves-effect waves-dark btn-large">Search for Trails</a>
+        </div>
+      </form>  
+      <div class="row">
+          <div class="col s12">
+          <div class="row" id="carRow">
+              <div class="col s12 m7" >
+                <div class="carousel carousel-slider" id="cardholder"></div>
+              </div>
+          </div>
+          </div>   
+      </div>  
+      <div>
+          <div class="col s6">
+              <div class="nearMe"></div>
+              <a class="waves-effect waves-dark btn-large">Find Trails Near Current Location</a>
+          </div>  
+      </div>  
   </div>
 </div>
-
+<div class="parallax-container">
+  <div class="parallax"><img src="./img/wave.JPG"></div>
+</div>
+  
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
