@@ -10,32 +10,31 @@
   <title>Tinder me Timbers</title>
 </head>
 <body>
-  <div>
-    <button onclick="document.getElementById('modalWrap').style.display='block'" style="width: 200px; margin-top: 200px; margin-left= 160px;">Open Login Window</button>
-  </div>
 
 <div id="modalWrap" class="modal">
-  <form class="modal-content">
     <div class="imgcontainer">
-      <span onclick="document.getElementById('modalWrap').style.display='none'" class="close" title="Close Login">&times;</span>
-      <img src="" alt="Avatar" class="avatar">
-      <h2 display="text-align: center">Login</h2>
+      <span onclick="document.getElementById('modalWrap').style.display='none'" class="close top-right" style="color:red" title="Close Login">&times;</span>
+      <img src="img/dreamland.JPG" style="border-radius: 50%" class="avatar" alt="User Avatar">
+      <h3 display="text-align: center">Login</h3>
     </div>
     <div class="container">
       <input type="text" placeholder="Enter Username" name="uName">
       <input type="password" placeholder= "Enter Password" name="pswd">
-      <button type="submit">Login</button>
-      <input type="checkbox" style="margin:26px 36px;">Remember Me
+      <button class="btnL" type="submit">Submit</button>
+      <input type="checkbox" style="margin-top:26px; margin-right:36px;">Remember Me
       <a href="#" style="float:right; margin-right:35px; margin-top: 26px">Forgot Password ?</a>
     </div>
-  </form>
 </div>
        
 <div class="parallax-container">
-  <div class="parallax"><img src="./img/sunny_day.jpg"></div>
+  <div class="parallax">
+    <img src="./img/sunny_day.jpg"></div>
+    <div>
+      <button class="top-left btnL" onclick="document.getElementById('modalWrap').style.display='block'" style="width: 150px; height:e">Open Login Window</button>
+    </div>
 </div>
 <div class="section white" id="backgroundTop">
-  <div class="row container">
+  <div class="row main-container">
       <form class="col m12">
         <div class="row">
             <h2 class="header">Find Your Trail Here</h2>
