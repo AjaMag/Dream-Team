@@ -17,7 +17,16 @@
 <div id="modalWrap" class="modal">
   <form class="modal-content">
     <div class="imgcontainer">
-      
+      <span onclick="document.getElementById('modalWrap').style.display='none'" class="close" title="Close Login">&times;</span>
+      <img src="" alt="Avatar" class="avatar">
+      <h2 display="text-align: center">Login</h2>
+    </div>
+    <div class="container">
+      <input type="text" placeholder="Enter Username" name="uName">
+      <input type="password" placeholder= "Enter Password" name="pswd">
+      <button type="submit">Login</button>
+      <input type="checkbox" style="margin:26px 36px;">Remember Me
+      <a href="#" style="float:right; margin-right:35px; margin-top: 26px">Forgot Password ?</a>
     </div>
   </form>
 </div>
