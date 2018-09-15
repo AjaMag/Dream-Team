@@ -1,13 +1,37 @@
 var lat;
 var long;
 
+//this is for the login pop-up window
+$(document).ready(function()
+{
+ $("#show_login").click(function(){
+  showpopup();
+ });
+ $("#close_login").click(function(){
+  hidepopup();
+ });
+});
+
+function showpopup()
+{
+ $("#loginform").fadeIn();
+ $("#loginform").css({"visibility":"visible","display":"block"});
+}
+
+function hidepopup()
+{
+ $("#loginform").fadeOut();
+ $("#loginform").css({"visibility":"hidden","display":"none"});
+}
+//Pop-up login window
+
 //this is for the parallax, which displays today's current weather pic using a key word from the weather API
 var pArr = ['img/cloudy_day.jpg', 'img/sunny_day.jpg', 'img/rainy day.jpg']
  
 $(document).ready(function(){
   $('.parallax').parallax();
 });
-    
+//parallax    
 
 function getLocation() {
   if (navigator.geolocation) {
