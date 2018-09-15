@@ -131,18 +131,8 @@ function findLocation () {
         console.log(response)
       })
   })
-
-
-
-
-
-
-
-
-
-
-
 }
+
 //Weather API call
 function weatherAPI (position) {
 
@@ -156,10 +146,20 @@ function weatherAPI (position) {
   .then(function(response) {
   console.log(response)
   var results = response.data;
+  
+  for (let i = 0; i < response.weather.length; i++) {
+    if (response.weather[0].id == '800') {
+      $('.container').append('<img src="http://openweathermap.org/img/w/10d.png" alt="">')
+    } else {
+      console.log('suck it')
+    }
+    
+    
+    }
   })
 }
 
-// getLocation()
-// setTimeout(function (){
-//   weatherAPI()
-// },4000)
+getLocation()
+setTimeout(function (){
+  weatherAPI()
+},4000)
