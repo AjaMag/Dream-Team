@@ -68,10 +68,10 @@ opacity: 0.8;
 
 .carousel {
   min-height: 700px;
-
 }
 
 #backgroundTop {
+  /* background-size: 100%; */
  background-repeat: no-repeat;
 }
 
