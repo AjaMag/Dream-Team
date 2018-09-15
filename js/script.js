@@ -2,6 +2,7 @@ var lat;
 var long;
 var db = firebase.database();
 var favs = db.ref("favorites");
+var weather;
 
 $(document).ready(function(){
   $('.parallax').parallax();
@@ -9,17 +10,23 @@ $(document).ready(function(){
     
 
 function getLocation() {
+  event.preventDefault();
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
   }
-    
 }
+
 function showPosition(position) {
   lat = position.coords.latitude;
   long = position.coords.longitude;
+
   console.log(lat, long)
   var hikingURL = `https://www.hikingproject.com/data/get-trails?maxResults=20&lat=${lat}&lon=${long}&maxDistance=10&key=200356178-455274bda6e2c8c2496858d99e90dcc7`;
   
+  setTimeout(function () {
+    weatherAPI(lat, long)
+  }, 2000)
+
    $.get(hikingURL)
    .then(function(response) {
      $("#cardholder").empty();
@@ -28,7 +35,7 @@ function showPosition(position) {
     <a class="carousel-item">  
     <div class="card">
       <div class="card-image">
-        <img src="${response.trails[i].imgSmallMed}">
+        <img src="${response.trails[i].imgSmallMed}" onerror="this.onerror=null;this.src='img/defaultpic.png'">
         <span class="card-title">${response.trails[i].name}</span>
       </div>
       <div class="card-content">
@@ -68,7 +75,7 @@ $(document).on("click", ".addFavorite", function () {
     <a class="carousel-item">  
     <div class="card">
       <div class="card-image">
-        <img src="${response.trails[0].imgSmallMed}">
+        <img src="${response.trails[0].imgSmallMed}" onerror="this.onerror=null;this.src='img/defaultpic.png'">
         <span class="card-title">${response.trails[0].name}</span>
       </div>
       <div class="card-content">
@@ -100,7 +107,11 @@ function findLocation () {
     lat = localResponse.resourceSets[0].resources[0].point.coordinates[0];
     long = localResponse.resourceSets[0].resources[0].point.coordinates[1];
     var hikingURL = `https://www.hikingproject.com/data/get-trails?maxResults=20&lat=${lat}&lon=${long}&maxDistance=10&key=200356178-455274bda6e2c8c2496858d99e90dcc7`;
-    
+   
+    setTimeout(function () {
+      weatherAPI(lat, long)
+    }, 2000)
+   
     $.get(hikingURL)
     .then(function (response) {
       $("#cardholder").empty();
@@ -109,7 +120,7 @@ function findLocation () {
     <a class="carousel-item">  
     <div class="card">
       <div class="card-image">
-        <img src="${response.trails[i].imgSmallMed}">
+        <img src="${response.trails[i].imgSmallMed}" >
         <span class="card-title">${response.trails[i].name}</span>
       </div>
       <div class="card-content">
@@ -134,7 +145,7 @@ function findLocation () {
 }
 
 //Weather API call
-function weatherAPI (position) {
+function weatherAPI (lat, long) {
 
   var queryURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&APPID=30ad9365801925ba6147c686f6736863`
 
@@ -163,3 +174,26 @@ getLocation()
 setTimeout(function (){
   weatherAPI()
 },4000)
+  weather = response.weather[0].main;
+  console.log(weather);
+  //weather options - "Clear", "Clouds", "Mist", "Rain", "Haze"
+  switch (weather) {
+    case "Clear":
+      $("#backgroundTop").css("background-image", "url('img/defaultpic.png')")
+      break;
+    case "Clouds":
+      $("#backgroundTop").css("background-image", "url('img/defaultpic.png')")
+      break;
+    case "Mist":
+      $("#backgroundTop").css("background-image", "url('img/defaultpic.png')")
+      break; 
+    case "Rain":
+      $("#backgroundTop").css("background-image", "url('img/defaultpic.png')")
+      break;
+    case "Haze":
+      $("#backgroundTop").css("background-image", "url('img/defaultpic.png')")
+      break;
+  }
+  })
+}
+
