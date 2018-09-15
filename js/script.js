@@ -10,11 +10,12 @@ $(document).ready(function(){
     
 
 function getLocation() {
+  event.preventDefault();
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
   }
-    
 }
+
 function showPosition(position) {
   lat = position.coords.latitude;
   long = position.coords.longitude;
@@ -167,7 +168,7 @@ function weatherAPI (lat, long) {
   console.log(response)
   weather = response.weather[0].main;
   console.log(weather);
-  //weather options - "Clear", "Clouds", "Mist", "Rain"
+  //weather options - "Clear", "Clouds", "Mist", "Rain", "Haze"
   switch (weather) {
     case "Clear":
       $("#backgroundTop").css("background-image", "url('img/defaultpic.png')")
@@ -179,6 +180,9 @@ function weatherAPI (lat, long) {
       $("#backgroundTop").css("background-image", "url('img/defaultpic.png')")
       break; 
     case "Rain":
+      $("#backgroundTop").css("background-image", "url('img/defaultpic.png')")
+      break;
+    case "Haze":
       $("#backgroundTop").css("background-image", "url('img/defaultpic.png')")
       break;
   }

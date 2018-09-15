@@ -3,9 +3,14 @@
 }
 
 .carousel {
-  min-height: 900px;
+  min-height: 700px;
+
 }
 
 #backgroundTop {
- 
+ background-repeat: no-repeat;
+}
+
+.card-title {
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
