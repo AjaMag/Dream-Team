@@ -50,9 +50,9 @@ function showPosition(position) {
   console.log(lat, long)
   var hikingURL = `https://www.hikingproject.com/data/get-trails?maxResults=20&lat=${lat}&lon=${long}&maxDistance=10&key=200356178-455274bda6e2c8c2496858d99e90dcc7`;
   
-  setTimeout(function () {
-    weatherAPI(lat, long)
-  }, 2000)
+
+   weatherAPI(lat, long)
+  
 
    $.get(hikingURL)
    .then(function(response) {
@@ -135,9 +135,9 @@ function findLocation () {
     long = localResponse.resourceSets[0].resources[0].point.coordinates[1];
     var hikingURL = `https://www.hikingproject.com/data/get-trails?maxResults=20&lat=${lat}&lon=${long}&maxDistance=10&key=200356178-455274bda6e2c8c2496858d99e90dcc7`;
    
-    setTimeout(function () {
-      weatherAPI(lat, long)
-    }, 2000)
+  
+    weatherAPI(lat, long)
+    
    
     $.get(hikingURL)
     .then(function (response) {
@@ -198,16 +198,16 @@ function weatherAPI (lat, long) {
   //weather options - "Clear", "Clouds", "Mist", "Rain", "Haze"
   switch (weather) {
     case "Clear":
-      $("#backgroundTop").css("background-image", "url('img/defaultpic.png')")
+      $("#backgroundTop").css("background-image", "url('img/sunny_day.jpg')")
       break;
     case "Clouds":
-      $("#backgroundTop").css("background-image", "url('img/defaultpic.png')")
+      $("#backgroundTop").css("background-image", "url('img/cloudy_day.jpg')")
       break;
     case "Mist":
       $("#backgroundTop").css("background-image", "url('img/defaultpic.png')")
       break; 
     case "Rain":
-      $("#backgroundTop").css("background-image", "url('img/defaultpic.png')")
+      $("#backgroundTop").css("background-image", "url('img/rainy day.jpg')")
       break;
     case "Haze":
       $("#backgroundTop").css("background-image", "url('img/defaultpic.png')")
