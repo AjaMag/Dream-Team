@@ -4,29 +4,13 @@ var db = firebase.database();
 var favs = db.ref("favorites");
 var weather;
 
-//this is for the login pop-up window
-$(document).ready(function()
-{
- $("#show_login").click(function(){
-  showpopup();
- });
- $("#close_login").click(function(){
-  hidepopup();
- });
-});
-
-function showpopup()
-{
- $("#loginform").fadeIn();
- $("#loginform").css({"visibility":"visible","display":"block"});
-}
-
-function hidepopup()
-{
- $("#loginform").fadeOut();
- $("#loginform").css({"visibility":"hidden","display":"none"});
-}
-//Pop-up login window
+//If the user clicks anywhere outside of the login modal, it will close
+// var modal = document.getElementById('modalWrap');
+// window.onclick = function(event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none"
+//   }
+// }
 
 //this is for the parallax, which displays today's current weather pic using a key word from the weather API
 var pArr = ['img/cloudy_day.jpg', 'img/sunny_day.jpg', 'img/rainy day.jpg']
