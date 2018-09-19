@@ -53,6 +53,13 @@ function hidepopup()
  $("#loginform").css({"visibility":"hidden","display":"none"});
 }
 //Pop-up login window
+//If the user clicks anywhere outside of the login modal, it will close
+// var modal = document.getElementById('modalWrap');
+// window.onclick = function(event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none"
+//   }
+// }
 
 //this is for the parallax, which displays today's current weather pic using a key word from the weather API
 var pArr = ['img/cloudy_day.jpg', 'img/sunny_day.jpg', 'img/rainy day.jpg']
@@ -70,6 +77,7 @@ function getLocation() {
 }
 
 function showPosition(position) {
+  
   lat = position.coords.latitude;
   long = position.coords.longitude;
 
@@ -202,6 +210,7 @@ function findLocation () {
 
 //Weather API call
 function weatherAPI (lat, long) {
+  
 
   var queryURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&APPID=30ad9365801925ba6147c686f6736863`
 
@@ -216,9 +225,11 @@ function weatherAPI (lat, long) {
 
 //Weather Icon Conditionals
 weather = response.weather[0].id;
+  
   console.log(weather);
   //weather options - "Clear", "Clouds", "Mist", "Rain", "Haze"
   switch (weather) {
+    
   //   case "Clear":
   //     $("#backgroundTop").css("background-image", "url('img/sunny_day.jpg')")
   //     break;
