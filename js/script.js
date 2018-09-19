@@ -44,6 +44,7 @@ function getLocation() {
 }
 
 function showPosition(position) {
+  
   lat = position.coords.latitude;
   long = position.coords.longitude;
 
@@ -173,6 +174,7 @@ function findLocation () {
 
 //Weather API call
 function weatherAPI (lat, long) {
+  
 
   var queryURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&APPID=30ad9365801925ba6147c686f6736863`
 
@@ -187,9 +189,11 @@ function weatherAPI (lat, long) {
 
 //Weather Icon Conditionals
 weather = response.weather[0].id;
+  
   console.log(weather);
   //weather options - "Clear", "Clouds", "Mist", "Rain", "Haze"
   switch (weather) {
+    
   //   case "Clear":
   //     $("#backgroundTop").css("background-image", "url('img/sunny_day.jpg')")
   //     break;

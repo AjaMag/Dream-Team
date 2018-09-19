@@ -43,16 +43,16 @@
         <div class="row">
             <h2 class="header">Find Your Trail Here</h2>
             <p class="grey-text text-darken-3 lighten-3">Enter trail location or city</p>
-          <div class="input-field col s4">
+          <div id="input"class="input-field col s4">
             <input placeholder="Enter nearest location or city" id="cityName" type="text" class="validate">
             <label for="cityInput"></label>
           </div>
-          <button class="waves-effect waves-dark btn-large" onclick="findLocation()" >Search for Trails</button>
+            <button id=search-button class="waves-effect waves-dark btn-large" onclick="findLocation()" >Search for Trails</button>
         </div>
         <div>
-            <div class="col s6">
+            <div id="trails-near-button"class="col s6">
                 <div class="nearMe"></div>
-                <button class="waves-effect waves-dark btn-large" onclick="getLocation()" >Find Trails Near Current Location</button>
+              <button id="current-button" class="waves-effect waves-dark btn-large" onclick="getLocation()" >Find Trails Near Current Location</button>
             </div>  
         </div>  
       </form>  

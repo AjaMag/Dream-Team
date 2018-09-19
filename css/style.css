@@ -12,6 +12,20 @@ input[type=text], input[type=password] {
   display:inline-block;
 }
 
+.container {
+  text-align: center;
+}
+
+#input {
+  float: none;
+  display: inline-block;
+}
+
+#trails-near-button {
+  display: inline-block;
+  float: none;
+}
+
 button
 {
  background-color:rgb(19, 200, 224);
@@ -86,3 +100,4 @@ opacity: 0.8;
   height: 25px;
   width: 25px;
 }
+
