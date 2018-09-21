@@ -49,12 +49,10 @@ function setLogin () {
   getFavorites()
 }
 
-<<<<<<< HEAD
 //this is for the Mobile-Responsive Hamburger Nav Menu
 $(document).ready(function(){
   $('.sidenav').sidenav();
 });  
-=======
 function hidepopup()
 {
  $("#loginform").fadeOut();
@@ -68,7 +66,6 @@ function hidepopup()
 //     modal.style.display = "none"
 //   }
 // }
->>>>>>> 57f1e1d9881652919d79d22c1200dc24cc08b0d9
 
 //this is for the parallax, which displays today's current weather pic using a key word from the weather API
 var pArr = ['img/cloudy_day.jpg', 'img/sunny_day.jpg', 'img/rainy day.jpg']
