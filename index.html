@@ -18,16 +18,16 @@
         <a href="#!" class="brand-logo"><i class="fa fa-leaf"></i>Tinder Me Timbers</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-          <li><a href="loginPg.html">Login</a></li>
-          <li><a href="signup.html">Create New Account</a></li>
-          <li><a href="#">Most Popular Hikes</a></li>
+          <li><a id="userBtn" href="#">Login</a></li>
+          <li><a>Sign Out</a></li>
+          <li><a onclick="goToFavs()" href="#">My Favorites</a></li>
         </ul>
       </div>
     </nav>
     <ul class="sidenav" id="mobile-demo">
-      <li><a href="loginPg.html">Login</a></li>
-      <li><a href="signup.html">Create New Account</a></li>
-      <li><a href="#">Most Popular Hikes</a></li>
+      <li><a>Login</a></li>
+      <li><a>Sign Out</a></li>
+      <li><a onclick="goToFavs" href="#">My Favorites</a></li>
     </ul>
 <div class="parallax-container">
   <div class="parallax">
@@ -44,13 +44,13 @@
             <label for="cityInput"></label>
           </div>
           <button id="btnL" class="waves-effect btn-large" onclick="findLocation()" >Search for Trails</button>
-            <button id=search-button class="waves-effect waves-dark btn-large" onclick="findLocation()" >Search for Trails</button>
+            <!-- <button id=search-button class="waves-effect waves-dark btn-large" onclick="findLocation()" >Search for Trails</button> -->
         </div>
         <div>
             <div id="trails-near-button"class="col s6">
                 <div class="nearMe"></div>
                 <button id="btnL" class="waves-effect btn-large" onclick="getLocation()" >Find Trails Near Current Location</button>
-              <button id="current-button" class="waves-effect waves-dark btn-large" onclick="getLocation()" >Find Trails Near Current Location</button>
+              <!-- <button id="current-button" class="waves-effect waves-dark btn-large" onclick="getLocation()" >Find Trails Near Current Location</button> -->
             </div>  
         </div>  
       </form>  
