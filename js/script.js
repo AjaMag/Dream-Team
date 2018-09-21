@@ -41,6 +41,7 @@ function signOut() {
   $(".userBtn").html(`Login`);
   $(".userBtn").attr("onclick", "document.getElementById('modalWrap').style.display = 'block'");
   $("#favholder").empty();
+  $("#favholder").css("display", "none");
 }
 
 function showpopup()
@@ -137,7 +138,7 @@ function getFavorites() {
 
     $.get(hikingURL)
       .then(function (response) {
-
+        $("#favholder").css("display", "block");
         console.log(response)
           $("#favholder").append(`
     <a class="carousel-item">  
@@ -158,6 +159,7 @@ function getFavorites() {
     </a>
     `)    
   })
+
   weatherAPI(lat, long)
     setTimeout(function () {
       $('#favholder').carousel();

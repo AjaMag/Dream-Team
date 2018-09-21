@@ -12,6 +12,10 @@ input[type=text], input[type=password] {
   display:inline-block;
 }
 
+#favholder {
+  display: none;
+}
+
 .nav-wrapper {
   background-color:rgb(218, 127, 9);
   padding-left: 5%;
