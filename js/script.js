@@ -24,6 +24,10 @@ $(document).ready(function()
  });
 });
 
+function loginPopUp() {
+  document.getElementById('modalWrap').style.display='block'
+}
+
 function signOut() {
   localStorage.removeItem("username");
   localStorage.removeItem("pass");
