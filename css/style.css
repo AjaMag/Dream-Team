@@ -117,7 +117,7 @@ opacity: 0.8;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
-.sunnyIcon {
+.icon {
   position: relative;
   margin: -4px;
   float: right;
@@ -125,6 +125,13 @@ opacity: 0.8;
   width: 25px;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+@media (max-height: 375px) {
+=======
+<<<<<<< HEAD
+>>>>>>> 26732d1c64423eeeb6bebd1a663816c2821b524a
 /* @media (max-width: 980 px) {
   .parallax {
       background-attachment: fixed !important;
@@ -133,7 +140,12 @@ opacity: 0.8;
 } */
   
 @media (max-height: 376px) {
+>>>>>>> ee663b25b548967191eac8de2a0d42866d536284
   
+<<<<<<< HEAD
+  
+}
+=======
   html {
     height: 667px;
   }
@@ -155,3 +167,11 @@ opacity: 0.8;
     max-height: 667px;
   }
 } */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 7da79606e2a1ae6485f2c126cc0d199fe2fa70d4
+=======
+>>>>>>> 57f1e1d9881652919d79d22c1200dc24cc08b0d9
+>>>>>>> ee663b25b548967191eac8de2a0d42866d536284
+>>>>>>> 26732d1c64423eeeb6bebd1a663816c2821b524a
