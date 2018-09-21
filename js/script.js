@@ -29,7 +29,7 @@ function signOut() {
   localStorage.removeItem("pass");
   $("#userBtn").html(`Login`);
   $("#openLogin").attr("onclick", "document.getElementById('modalWrap').style.display = 'block'");
-
+  $("#favholder").empty();
 }
 
 function showpopup()
@@ -42,11 +42,17 @@ function setLogin () {
   event.preventDefault();
   localStorage.setItem("username", $("#uName").val())
   localStorage.setItem("pass", $("#pswd").val())
+  user = localStorage.username.toLowerCase() + localStorage.pass.toLowerCase();
   document.getElementById('modalWrap').style.display = 'none';
   $("#userBtn").html(`Welcome ${localStorage.username}!`);
   $("#openLogin").attr("onclick", "");
+  getFavorites()
 }
 
+//this is for the Mobile-Responsive Hamburger Nav Menu
+$(document).ready(function(){
+  $('.sidenav').sidenav();
+});  
 function hidepopup()
 {
  $("#loginform").fadeOut();
@@ -158,7 +164,7 @@ function getFavorites() {
   })
   weatherAPI(lat, long)
     setTimeout(function () {
-      $('.carousel').carousel();
+      $('#favholder').carousel();
       $('.carousel-slider').slider({ full_width: true });
     }, 500)
 })

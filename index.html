@@ -7,41 +7,31 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <title>Tinder me Timbers</title>
 </head>
 <body>
-
-  <div>
-    <button id="openLogin" onclick="document.getElementById('modalWrap').style.display='block'" style="width: 200px; margin-top: 200px; margin-left: 160px;"><span id="userBtn">Login</span></button>
-    <a href="#" onclick="signOut()">Sign Out</a>
-  </div>
-  <div class="signUp">
-   
-  <a href="signup.html">Sign out</a> 
-  </div>
-<div id="modalWrap" class="modal">
-    <div class="imgcontainer">
-      <span onclick="document.getElementById('modalWrap').style.display='none'" class="close top-right" style="color:red" title="Close Login">&times;</span>
-      <img src="img/dreamland.JPG" style="border-radius: 50%" class="avatar" alt="User Avatar">
-      <h3 display="text-align: center">Login</h3>
-    </div>
-    <div class="container">
-      <input type="text" placeholder="Enter Username" id="uName" name="uName">
-      <input type="password" placeholder= "Enter Password" id="pswd" name="pswd">
-      <button onclick="setLogin()">Set my login</button>
-      <input type="checkbox" style="margin:26px 36px;">Remember Me
-      <a href="#" style="float:right; margin-right:35px; margin-top: 26px">Forgot Password ?</a>
-    </div>
-</div>
-
+  <nav>
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo"><i class="fa fa-leaf"></i>Tinder Me Timbers</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="loginPg.html">Login</a></li>
+          <li><a href="signup.html">Create New Account</a></li>
+          <li><a href="#">Most Popular Hikes</a></li>
+        </ul>
+      </div>
+    </nav>
+    <ul class="sidenav" id="mobile-demo">
+      <li><a href="loginPg.html">Login</a></li>
+      <li><a href="signup.html">Create New Account</a></li>
+      <li><a href="#">Most Popular Hikes</a></li>
+    </ul>
 <div class="parallax-container">
   <div class="parallax">
     <img src="./img/sunny_day.jpg"></div>
-    <div>
-      <button class="top-left btnL" onclick="document.getElementById('modalWrap').style.display='block'" style="width: 150px; height:e">Open Login Window</button>
-    </div>
 </div>
 <div class="section white" id="backgroundTop">
   <div class="row main-container">
@@ -53,11 +43,13 @@
             <input placeholder="Enter nearest location or city" id="cityName" type="text" class="validate">
             <label for="cityInput"></label>
           </div>
+          <button id="btnL" class="waves-effect btn-large" onclick="findLocation()" >Search for Trails</button>
             <button id=search-button class="waves-effect waves-dark btn-large" onclick="findLocation()" >Search for Trails</button>
         </div>
         <div>
             <div id="trails-near-button"class="col s6">
                 <div class="nearMe"></div>
+                <button id="btnL" class="waves-effect btn-large" onclick="getLocation()" >Find Trails Near Current Location</button>
               <button id="current-button" class="waves-effect waves-dark btn-large" onclick="getLocation()" >Find Trails Near Current Location</button>
             </div>  
         </div>  
@@ -71,20 +63,28 @@
           </div>
           </div>   
       </div>  
+
+      <div class="row " id="favRow">
+          <div id="carousel-fav" class="col s12 m7" >
+              <div class="carousel carousel-slider" id="favholder" >
+                  
+              </div>
+          </div>
+      </div>
+
   </div>
 </div>
 <div class="parallax-container">
   <div class="parallax"><img src="./img/cloudy_day.jpg"></div>
 </div>
 <div class="row" id="favRow">
-  <div class="col s12 m7" >
+  <div class="col s6 m7" >
     <div class="carousel carousel-slider" id="favholder" >
-
     </div>
+  <div class="col s6" id="wish list"></div>  
   </div>
 </div>
 
-  
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
@@ -102,5 +102,3 @@
   <script src="js/script.js"></script>
 </body>
 </html>
-
-<img src="" alt="">
