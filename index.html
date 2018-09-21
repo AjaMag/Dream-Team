@@ -18,17 +18,31 @@
         <a href="#!" class="brand-logo"><i class="fa fa-leaf"></i>Tinder Me Timbers</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-          <li><a href="loginPg.html">Login</a></li>
-          <li><a href="signup.html">Create New Account</a></li>
-          <li><a href="#">Most Popular Hikes</a></li>
+          <li><a class="userBtn" onclick="document.getElementById('modalWrap').style.display = 'block'">Login</a></li>
+          <li><a onclick="signOut()">Sign Out</a></li>
+          <li><a onclick="goToFavs()" href="#">My Favorites</a></li>
         </ul>
       </div>
     </nav>
     <ul class="sidenav" id="mobile-demo">
-      <li><a href="loginPg.html">Login</a></li>
-      <li><a href="signup.html">Create New Account</a></li>
-      <li><a href="#">Most Popular Hikes</a></li>
+      <li><a class="userBtn" onclick="document.getElementById('modalWrap').style.display = 'block'">Login</a></li>
+      <li><a onclick="signOut()">Sign Out</a></li>
+      <li><a onclick="goToFavs()" href="#">My Favorites</a></li>
     </ul>
+
+<div id="modalWrap" class="modal">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('modalWrap').style.display='none'" class="close top-right" style="color:red" title="Close Login">&times;</span>
+      <img src="img/dreamland.JPG" style="border-radius: 50%" class="avatar" alt="User Avatar">
+      <h3 display="text-align: center">Login</h3>
+    </div>
+    <div class="container">
+      <input type="text" placeholder="Enter Username" id="uName" name="uName">
+      <input type="password" placeholder= "Enter Password" id="pswd" name="pswd">
+      <button class="btnL" onclick="setLogin()">Submit</button>
+    </div>
+</div>  
+
 <div class="parallax-container">
   <div class="parallax">
     <img src="./img/dark_clouds.jpg"></div>
@@ -44,12 +58,22 @@
             <input placeholder="Enter nearest location or city" id="cityName" type="text" class="validate">
             <label for="cityInput"></label>
           </div>
+<<<<<<< HEAD
             <button id=search-button class="waves-effect waves-dark btn-large" onclick="findLocation()" >Search for Trails</button>
+=======
+          <button id="btnL" class="waves-effect btn-large" onclick="findLocation()" >Search for Trails</button>
+            <!-- <button id=search-button class="waves-effect waves-dark btn-large" onclick="findLocation()" >Search for Trails</button> -->
+>>>>>>> 05a33523edabca6ceee570f451e7a592d785ddbc
         </div>
         <div>
             <div id="trails-near-button"class="col s6">
                 <div class="nearMe"></div>
+<<<<<<< HEAD
               <button id="current-button" class="waves-effect waves-dark btn-large" onclick="getLocation()" >Find Trails Near Current Location</button>
+=======
+                <button id="btnL" class="waves-effect btn-large" onclick="getLocation()" >Find Trails Near Current Location</button>
+              <!-- <button id="current-button" class="waves-effect waves-dark btn-large" onclick="getLocation()" >Find Trails Near Current Location</button> -->
+>>>>>>> 05a33523edabca6ceee570f451e7a592d785ddbc
             </div>  
         </div>  
       </form>  
@@ -99,5 +123,6 @@
   firebase.initializeApp(config);
   </script>
   <script src="js/script.js"></script>
+  <p>Tinder Me Timbers &copy; 2018 </p>
 </body>
 </html>

@@ -11,25 +11,37 @@ $(document).ready(function()
   user = localStorage.username.toLowerCase() + localStorage.pass.toLowerCase();
   console.log(localStorage.username);
   if (localStorage.username !== "") {
-    $("#userBtn").html(`Welcome ${localStorage.username}!`);
-    $("#openLogin").attr("onclick", "");
+    $(".userBtn").html(`Welcome ${localStorage.username}!`);
+    $(".userBtn").attr("onclick", "");
   }
   setTimeout( getFavorites, 500 );
   
- $("#show_login").click(function(){
-  showpopup();
- });
- $("#close_login").click(function(){
-  hidepopup();
- });
+  $('.sidenav')
+    .sidenav()
+    .on('click tap', 'li a', () => {
+      $('.sidenav').sidenav('close');
+    });
+
+  $('.parallax').parallax();
 });
+
+function goToFavs() {
+    $([document.documentElement, document.body]).animate({
+      scrollTop: $("#favholder").offset().top
+    }, 1000);
+  }
+
+function loginPopUp() {
+  document.getElementById('modalWrap').style.display='block'
+}
 
 function signOut() {
   localStorage.removeItem("username");
   localStorage.removeItem("pass");
-  $("#userBtn").html(`Login`);
-  $("#openLogin").attr("onclick", "document.getElementById('modalWrap').style.display = 'block'");
+  $(".userBtn").html(`Login`);
+  $(".userBtn").attr("onclick", "document.getElementById('modalWrap').style.display = 'block'");
   $("#favholder").empty();
+  $("#favholder").css("display", "none");
 }
 
 function showpopup()
@@ -44,36 +56,21 @@ function setLogin () {
   localStorage.setItem("pass", $("#pswd").val())
   user = localStorage.username.toLowerCase() + localStorage.pass.toLowerCase();
   document.getElementById('modalWrap').style.display = 'none';
-  $("#userBtn").html(`Welcome ${localStorage.username}!`);
-  $("#openLogin").attr("onclick", "");
+  $(".userBtn").html(`Welcome ${localStorage.username}!`);
+  $(".userBtn").attr("onclick", "");
   getFavorites()
 }
 
-//this is for the Mobile-Responsive Hamburger Nav Menu
-$(document).ready(function(){
-  $('.sidenav').sidenav();
-});  
 function hidepopup()
 {
  $("#loginform").fadeOut();
  $("#loginform").css({"visibility":"hidden","display":"none"});
 }
-//Pop-up login window
-//If the user clicks anywhere outside of the login modal, it will close
-// var modal = document.getElementById('modalWrap');
-// window.onclick = function(event) {
-//   if (event.target == modal) {
-//     modal.style.display = "none"
-//   }
-// }
+
 
 //this is for the parallax, which displays today's current weather pic using a key word from the weather API
 var pArr = ['img/cloudy_day.jpg', 'img/sunny_day.jpg', 'img/rainy day.jpg']
- 
-$(document).ready(function(){
-  $('.parallax').parallax();
-});
-//parallax    
+  
 
 function getLocation() {
   event.preventDefault();
@@ -150,7 +147,7 @@ function getFavorites() {
 
     $.get(hikingURL)
       .then(function (response) {
-
+        $("#favholder").css("display", "block");
         console.log(response)
           $("#favholder").append(`
     <a class="carousel-item">  
@@ -171,6 +168,7 @@ function getFavorites() {
     </a>
     `)    
   })
+
   weatherAPI(lat, long)
     setTimeout(function () {
       $('#favholder').carousel();
