@@ -11,30 +11,35 @@ $(document).ready(function()
   user = localStorage.username.toLowerCase() + localStorage.pass.toLowerCase();
   console.log(localStorage.username);
   if (localStorage.username !== "") {
-    $("#userBtn").html(`Welcome ${localStorage.username}!`);
-    $("#openLogin").attr("onclick", "");
+    $(".userBtn").html(`Welcome ${localStorage.username}!`);
+    $(".userBtn").attr("onclick", "");
   }
   setTimeout( getFavorites, 500 );
   
- $("#show_login").click(function(){
-  showpopup();
- });
- $("#close_login").click(function(){
-  hidepopup();
- });
+  $('.sidenav')
+    .sidenav()
+    .on('click tap', 'li a', () => {
+      $('.sidenav').sidenav('close');
+    });
+
+  $('.parallax').parallax();
 });
 
 function goToFavs() {
     $([document.documentElement, document.body]).animate({
       scrollTop: $("#favholder").offset().top
     }, 1000);
+  }
+
+function loginPopUp() {
+  document.getElementById('modalWrap').style.display='block'
 }
 
 function signOut() {
   localStorage.removeItem("username");
   localStorage.removeItem("pass");
-  $("#userBtn").html(`Login`);
-  $("#openLogin").attr("onclick", "document.getElementById('modalWrap').style.display = 'block'");
+  $(".userBtn").html(`Login`);
+  $(".userBtn").attr("onclick", "document.getElementById('modalWrap').style.display = 'block'");
   $("#favholder").empty();
 }
 
@@ -50,36 +55,21 @@ function setLogin () {
   localStorage.setItem("pass", $("#pswd").val())
   user = localStorage.username.toLowerCase() + localStorage.pass.toLowerCase();
   document.getElementById('modalWrap').style.display = 'none';
-  $("#userBtn").html(`Welcome ${localStorage.username}!`);
-  $("#openLogin").attr("onclick", "");
+  $(".userBtn").html(`Welcome ${localStorage.username}!`);
+  $(".userBtn").attr("onclick", "");
   getFavorites()
 }
 
-//this is for the Mobile-Responsive Hamburger Nav Menu
-$(document).ready(function(){
-  $('.sidenav').sidenav();
-});  
 function hidepopup()
 {
  $("#loginform").fadeOut();
  $("#loginform").css({"visibility":"hidden","display":"none"});
 }
-//Pop-up login window
-//If the user clicks anywhere outside of the login modal, it will close
-// var modal = document.getElementById('modalWrap');
-// window.onclick = function(event) {
-//   if (event.target == modal) {
-//     modal.style.display = "none"
-//   }
-// }
+
 
 //this is for the parallax, which displays today's current weather pic using a key word from the weather API
 var pArr = ['img/cloudy_day.jpg', 'img/sunny_day.jpg', 'img/rainy day.jpg']
- 
-$(document).ready(function(){
-  $('.parallax').parallax();
-});
-//parallax    
+  
 
 function getLocation() {
   event.preventDefault();
@@ -97,7 +87,7 @@ function showPosition(position) {
   var hikingURL = `https://www.hikingproject.com/data/get-trails?maxResults=20&lat=${lat}&lon=${long}&maxDistance=10&key=200356178-455274bda6e2c8c2496858d99e90dcc7`;
   
 
-   weatherAPI(lat, long)
+  weatherAPI(lat, long)
   
 
    $.get(hikingURL)
@@ -123,12 +113,14 @@ function showPosition(position) {
     </a>
     `)
     }
+    
      setTimeout(function () {
        $('.carousel').carousel();
        $('.carousel-slider').slider({ full_width: true });
      }, 500)
      console.log(response)
    })
+   
 }
 
 //addFavorite
@@ -166,6 +158,7 @@ function getFavorites() {
     </a>
     `)    
   })
+  weatherAPI(lat, long)
     setTimeout(function () {
       $('#favholder').carousel();
       $('.carousel-slider').slider({ full_width: true });
@@ -185,7 +178,7 @@ function findLocation () {
     var hikingURL = `https://www.hikingproject.com/data/get-trails?maxResults=20&lat=${lat}&lon=${long}&maxDistance=10&key=200356178-455274bda6e2c8c2496858d99e90dcc7`;
    
   
-    weatherAPI(lat, long)
+    
     
    
     $.get(hikingURL)
@@ -211,6 +204,7 @@ function findLocation () {
     </a>
     `)
         }
+        weatherAPI(lat, long)
         setTimeout(function () {
           $('.carousel').carousel();
           $('.carousel-slider').slider({ full_width: true });
@@ -236,83 +230,38 @@ function weatherAPI (lat, long) {
   var results = response.data;
 
 //Weather Icon Conditionals
-weather = response.weather[0].id;
+weather = response.weather[0].main;
   
-  console.log(weather);
-  //weather options - "Clear", "Clouds", "Mist", "Rain", "Haze"
-  switch (weather) {
-    
-  //   case "Clear":
-  //     $("#backgroundTop").css("background-image", "url('img/sunny_day.jpg')")
-  //     break;
-  //   case "Clouds":
-  //     $("#backgroundTop").css("background-image", "url('img/cloudy_day.jpg')")
-  //     break;
-  //   case "Mist":
-  //     $("#backgroundTop").css("background-image", "url('img/defaultpic.png')")
-  //     break; 
-  //   case "Rain":
-  //     $("#backgroundTop").css("background-image", "url('img/rainy day.jpg')")
-  //     break;
-  //   case "Haze":
-  //     $("#backgroundTop").css("background-image", "url('img/defaultpic.png')")
-  //     break;
-  // }
-    //Clear
-    // case 800:
-    // $(".card-content").css("background-image", "url('./img/Sunny_icon.png')")
-    // break;
-    // //Clouds
-    // case 801, 802, 803, 804:
-    // $("#backgroundTop").css("background-image", "url('./img/cloudy_icon.png')")
-    // break;
-    // //Snow
-    // case 600, 601, 602, 611, 612, 615, 616, 620, 621, 622:
-    // $("#backgroundTop").css("background-image", "url('./img/snow_icon.png')")
-    // break; 
-    // //Rain
-    // case 500, 501, 502, 503, 504, 511, 520, 522, 531:
-    // $("#backgroundTop").css("background-image", "url('./img/rainy_icon.png')")
-    // break;
-    // //Thunderstorm
-    // case 200, 201, 202, 210, 211, 212, 221, 230, 231, 232:
-    // $("#backgroundTop").css("background-image", "url('./img/thunderstorm_icon.png')")
-    // break;
-    // //Atmostphere
-    // case 701, 711, 721, 731, 741, 751, 761, 762, 771, 781:
-    // $("#backgroundTop").css("background-image", "url('./img/foggy_icon.png')")
-    //}
-
-    case 800:
-    $(".card-content").prepend('<img src="./img/Sunny_icon.png" alt="" class="sunnyIcon">')
+console.log(weather);
+//weather options - "Clear", "Clouds", "Mist", "Rain", "Haze"
+switch (weather) {
+  case "Clear":
+  $(".card-content").prepend('<img src="./img/Sunny_icon.png" alt="" class="icon">')
     break;
-    //Clouds
-    case 801, 802, 803, 804:
-    $(".card-content").prepend('<img src="./img/cloudy_icon.png" alt="" class="sunnyIcon">')
+  case "Clouds":
+  $(".card-content").prepend('<img src="./img/cloudy_icon.png" alt="" class="icon">')
     break;
-    //Snow
-    case 600, 601, 602, 611, 612, 615, 616, 620, 621, 622:
-    $(".card-content").prepend('<img src="./img/snow_icon.png" alt="" class="sunnyIcon">')
+  case "Mist":
+  $(".card-content").prepend('<img src="./img/foggy_icon.png" alt="" class="icon">')
+    break; 
+  case "Rain":
+  $(".card-content").prepend('<img src="./img/rainy_icon.png" alt="" class="icon">')
     break;
-    //Rain
-    case 500, 501, 502, 503, 504, 511, 520, 522, 531:
-    $(".card-content").prepend('<img src="./img/rainy_icon.png" alt="" class="sunnyIcon">')
+  case "Haze":
+  $(".card-content").prepend('<img src="./img/foggy_icon.png" alt="" class="icon">')
     break;
-    //Thunderstorm
-    case 200, 201, 202, 210, 211, 212, 221, 230, 231, 232:
-    $(".card-content").prepend('<img src="./img/thunderstorm_icon.png" alt="" class="sunnyIcon">')
-    break;
-    //Atmostphere
-    case 701, 711, 721, 731, 741, 751, 761, 762, 771, 781:
-    $(".card-content").prepend('<img src="./img/foggy_icon.png" alt="" class="sunnyIcon">')
+  case "Thunderstorm":
+  $(".card-content").prepend('<img src="./img/thunderstorm_icon.png" alt="" class="icon">')
     break;
     }
   })
 }
+  
 
-
-
-
+    
+    
+    
+    
 
 
 

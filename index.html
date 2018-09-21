@@ -18,17 +18,31 @@
         <a href="#!" class="brand-logo"><i class="fa fa-leaf"></i>Tinder Me Timbers</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-          <li><a id="userBtn" href="#">Login</a></li>
-          <li><a>Sign Out</a></li>
+          <li><a class="userBtn" onclick="document.getElementById('modalWrap').style.display = 'block'">Login</a></li>
+          <li><a onclick="signOut()">Sign Out</a></li>
           <li><a onclick="goToFavs()" href="#">My Favorites</a></li>
         </ul>
       </div>
     </nav>
     <ul class="sidenav" id="mobile-demo">
-      <li><a>Login</a></li>
-      <li><a>Sign Out</a></li>
-      <li><a onclick="goToFavs" href="#">My Favorites</a></li>
+      <li><a class="userBtn" onclick="document.getElementById('modalWrap').style.display = 'block'">Login</a></li>
+      <li><a onclick="signOut()">Sign Out</a></li>
+      <li><a onclick="goToFavs()" href="#">My Favorites</a></li>
     </ul>
+
+<div id="modalWrap" class="modal">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('modalWrap').style.display='none'" class="close top-right" style="color:red" title="Close Login">&times;</span>
+      <img src="img/dreamland.JPG" style="border-radius: 50%" class="avatar" alt="User Avatar">
+      <h3 display="text-align: center">Login</h3>
+    </div>
+    <div class="container">
+      <input type="text" placeholder="Enter Username" id="uName" name="uName">
+      <input type="password" placeholder= "Enter Password" id="pswd" name="pswd">
+      <button class="btnL" onclick="setLogin()">Submit</button>
+    </div>
+</div>  
+
 <div class="parallax-container">
   <div class="parallax">
     <img src="./img/sunny_day.jpg"></div>
@@ -100,5 +114,6 @@
   firebase.initializeApp(config);
   </script>
   <script src="js/script.js"></script>
+  <p>Tinder Me Timbers &copy; 2018 </p>
 </body>
 </html>
