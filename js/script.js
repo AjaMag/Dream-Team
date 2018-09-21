@@ -1,13 +1,74 @@
 var lat;
 var long;
 var db = firebase.database();
-var favs = db.ref("favorites");
+var users = db.ref("users");
 var weather;
+var user;
 
+//this is for the login pop-up window
+$(document).ready(function()
+{
+  user = localStorage.username.toLowerCase() + localStorage.pass.toLowerCase();
+  console.log(localStorage.username);
+  if (localStorage.username !== "") {
+    $("#userBtn").html(`Welcome ${localStorage.username}!`);
+    $("#openLogin").attr("onclick", "");
+  }
+  setTimeout( getFavorites, 500 );
+  
+ $("#show_login").click(function(){
+  showpopup();
+ });
+ $("#close_login").click(function(){
+  hidepopup();
+ });
+});
+
+function signOut() {
+  localStorage.removeItem("username");
+  localStorage.removeItem("pass");
+  $("#userBtn").html(`Login`);
+  $("#openLogin").attr("onclick", "document.getElementById('modalWrap').style.display = 'block'");
+  $("#favholder").empty();
+}
+
+function showpopup()
+{
+ $("#loginform").fadeIn();
+ $("#loginform").css({"visibility":"visible","display":"block"});
+}
+
+function setLogin () {
+  event.preventDefault();
+  localStorage.setItem("username", $("#uName").val())
+  localStorage.setItem("pass", $("#pswd").val())
+  user = localStorage.username.toLowerCase() + localStorage.pass.toLowerCase();
+  document.getElementById('modalWrap').style.display = 'none';
+  $("#userBtn").html(`Welcome ${localStorage.username}!`);
+  $("#openLogin").attr("onclick", "");
+  getFavorites()
+}
+
+<<<<<<< HEAD
 //this is for the Mobile-Responsive Hamburger Nav Menu
 $(document).ready(function(){
   $('.sidenav').sidenav();
 });  
+=======
+function hidepopup()
+{
+ $("#loginform").fadeOut();
+ $("#loginform").css({"visibility":"hidden","display":"none"});
+}
+//Pop-up login window
+//If the user clicks anywhere outside of the login modal, it will close
+// var modal = document.getElementById('modalWrap');
+// window.onclick = function(event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none"
+//   }
+// }
+>>>>>>> 57f1e1d9881652919d79d22c1200dc24cc08b0d9
 
 //this is for the parallax, which displays today's current weather pic using a key word from the weather API
 var pArr = ['img/cloudy_day.jpg', 'img/sunny_day.jpg', 'img/rainy day.jpg']
@@ -25,6 +86,7 @@ function getLocation() {
 }
 
 function showPosition(position) {
+  
   lat = position.coords.latitude;
   long = position.coords.longitude;
 
@@ -52,7 +114,7 @@ function showPosition(position) {
         <p>${response.trails[i].summary}</p>
       </div>
        <div class="card-action">
-       <p class="addFavorite" data-id="${response.trails[i].id}">Add to Favorites</p>
+       <button href="#" class="addFavorite" data-id="${response.trails[i].id}">Add to Favorites<i class="material-icons right">thumb_up</i></button>
         </div>
     </div>
     </a>
@@ -66,14 +128,17 @@ function showPosition(position) {
    })
 }
 
+//addFavorite
 $(document).on("click", ".addFavorite", function () {
-
-  favs.push($(this).attr("data-id"))
+  user =  localStorage.username.toLowerCase() + localStorage.pass.toLowerCase();
+  console.log(user)
+  firebase.database().ref('users/' + user + '/favorites').push($(this).attr("data-id"));
 })
 
+function getFavorites() {
+  firebase.database().ref('users/' + user + '/favorites').on("child_added", function (fav) {
 
-  favs.on("child_added", function (favorites) {
-    var hikingURL = `https://www.hikingproject.com/data/get-trails-by-id?ids=${favorites.val()}&key=200356178-455274bda6e2c8c2496858d99e90dcc7`;
+    var hikingURL = `https://www.hikingproject.com/data/get-trails-by-id?ids=${fav.val()}&key=200356178-455274bda6e2c8c2496858d99e90dcc7`;
 
     $.get(hikingURL)
       .then(function (response) {
@@ -96,14 +161,14 @@ $(document).on("click", ".addFavorite", function () {
         </div>
     </div>
     </a>
-    `)
+    `)    
   })
-
     setTimeout(function () {
-      $('.carousel').carousel();
+      $('#favholder').carousel();
       $('.carousel-slider').slider({ full_width: true });
     }, 500)
 })
+}
 
 function findLocation () {
   event.preventDefault();
@@ -137,7 +202,7 @@ function findLocation () {
         <p>${response.trails[i].summary}</p>
       </div>
        <div class="card-action">
-       <p class="addFavorite" data-id="${response.trails[i].id}">Add to Favorites</p>
+       <button href="#" class="addFavorite" data-id="${response.trails[i].id}">Add to Favorites<i class="material-icons right">thumb_up</i></button>
         </div>
     </div>
     </a>
@@ -154,6 +219,7 @@ function findLocation () {
 
 //Weather API call
 function weatherAPI (lat, long) {
+  
 
   var queryURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&APPID=30ad9365801925ba6147c686f6736863`
 
@@ -168,9 +234,11 @@ function weatherAPI (lat, long) {
 
 //Weather Icon Conditionals
 weather = response.weather[0].id;
+  
   console.log(weather);
   //weather options - "Clear", "Clouds", "Mist", "Rain", "Haze"
   switch (weather) {
+    
   //   case "Clear":
   //     $("#backgroundTop").css("background-image", "url('img/sunny_day.jpg')")
   //     break;
