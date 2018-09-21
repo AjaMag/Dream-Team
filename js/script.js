@@ -82,6 +82,15 @@ function getLocation() {
   }
 }
 
+//Checking if favRow is empty
+window.onload = function () {
+  if ( $.trim( $('#favholder').text() ).length == 0 ) {
+    console.log("heloo0pooodsafuh")
+    $('.carouselHidden').css("display", "none")
+    // check if div is empty, with &amp;nbsp; or white-space
+  }
+}
+
 function showPosition(position) {
   
   lat = position.coords.latitude;

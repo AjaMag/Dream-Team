@@ -12,17 +12,53 @@ input[type=text], input[type=password] {
   display:inline-block;
 }
 
-<<<<<<< HEAD
 .nav-wrapper {
-  background-color:rgb(218, 127, 9);
+  background-color:rgb(76, 79, 88);
   padding-left: 5%;
   padding-right: 5%;
 }
 
-#btnL
-=======
+
 .main-container {
   text-align: center;
+  background-image: linear-gradient(rgb(33, 64, 121), rgb(122, 164, 243)) ;
+
+}
+
+.header {
+  color: white;
+}
+
+#border {
+  border-bottom: white solid 2px;
+  margin: auto;
+  width: 55%;
+
+}
+
+.instruction-p {
+  color: white;
+}
+
+.section {
+  border-top: rgb(49, 49, 49) solid 1px;
+  padding: 0px !important;
+}
+
+.grey-text {
+  color: white;
+}
+
+#search-button {
+  /* background-color: rgb(148, 202, 250); */
+  background-color: rgb(82, 116, 146);
+  width: 400px;
+  display: block;
+  margin: auto;
+}
+
+#current-button {
+  background-color: rgb(82, 116, 146);
 }
 
 #input {
@@ -41,9 +77,8 @@ input[type=text], input[type=password] {
 }
 
 button
->>>>>>> 57f1e1d9881652919d79d22c1200dc24cc08b0d9
 {
- background-color:rgb(212, 122, 5);
+ background-color:rgb(255, 255, 255);
  color: white;
  padding: 14px 10px;
  cursor: pointer;
@@ -112,12 +147,12 @@ opacity: 0.8;
  background-repeat: no-repeat;
 }
 
-.main-container {
-  background-color: rgb(226, 147, 44);  
-}
-
 .card-title {
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+div:empty {
+  display: none;
 }
 
 .icon {
@@ -126,6 +161,22 @@ opacity: 0.8;
   float: right;
   height: 25px;
   width: 25px;
+}
+
+::-webkit-input-placeholder {
+  text-align: center;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  text-align: center;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+  text-align: center;  
+}
+
+:-ms-input-placeholder {  
+  text-align: center; 
 }
 
 <<<<<<< HEAD
