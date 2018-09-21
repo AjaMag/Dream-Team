@@ -228,83 +228,38 @@ function weatherAPI (lat, long) {
   var results = response.data;
 
 //Weather Icon Conditionals
-weather = response.weather[0].id;
+weather = response.weather[0].main;
   
 console.log(weather);
 //weather options - "Clear", "Clouds", "Mist", "Rain", "Haze"
 switch (weather) {
-  
-  case 800:
+  case "Clear":
   $(".card-content").prepend('<img src="./img/Sunny_icon.png" alt="" class="icon">')
-  break;
-  //Clouds
-  case 801, 802, 803, 804:
+    break;
+  case "Clouds":
   $(".card-content").prepend('<img src="./img/cloudy_icon.png" alt="" class="icon">')
-  break;
-  //Snow
-  case 600, 601, 602, 611, 612, 615, 616, 620, 621, 622:
-  $(".card-content").prepend('<img src="./img/snow_icon.png" alt="" class="icon">')
-  break;
-  //Rain
-  case 500, 501, 502, 503, 504, 511, 520, 522, 531:
-  $(".card-content").prepend('<img src="./img/rainy_icon.png" alt="" class="icon">')
-  break;
-  //Thunderstorm
-  case 200, 201, 202, 210, 211, 212, 221, 230, 231, 232:
-  $(".card-content").prepend('<img src="./img/thunderstorm_icon.png" alt="" class="icon">')
-  break;
-  //Atmostphere
-  case 701, 711, 721, 731, 741, 751, 761, 762, 771, 781:
+    break;
+  case "Mist":
   $(".card-content").prepend('<img src="./img/foggy_icon.png" alt="" class="icon">')
-  break;
-  }
-  //   case "Clear":
-  //     $("#backgroundTop").css("background-image", "url('img/sunny_day.jpg')")
-  //     break;
-  //   case "Clouds":
-  //     $("#backgroundTop").css("background-image", "url('img/cloudy_day.jpg')")
-  //     break;
-  //   case "Mist":
-  //     $("#backgroundTop").css("background-image", "url('img/defaultpic.png')")
-  //     break; 
-  //   case "Rain":
-  //     $("#backgroundTop").css("background-image", "url('img/rainy day.jpg')")
-  //     break;
-  //   case "Haze":
-  //     $("#backgroundTop").css("background-image", "url('img/defaultpic.png')")
-  //     break;
-  // }
-    //Clear
-    // case 800:
-    // $(".card-content").css("background-image", "url('./img/Sunny_icon.png')")
-    // break;
-    // //Clouds
-    // case 801, 802, 803, 804:
-    // $("#backgroundTop").css("background-image", "url('./img/cloudy_icon.png')")
-    // break;
-    // //Snow
-    // case 600, 601, 602, 611, 612, 615, 616, 620, 621, 622:
-    // $("#backgroundTop").css("background-image", "url('./img/snow_icon.png')")
-    // break; 
-    // //Rain
-    // case 500, 501, 502, 503, 504, 511, 520, 522, 531:
-    // $("#backgroundTop").css("background-image", "url('./img/rainy_icon.png')")
-    // break;
-    // //Thunderstorm
-    // case 200, 201, 202, 210, 211, 212, 221, 230, 231, 232:
-    // $("#backgroundTop").css("background-image", "url('./img/thunderstorm_icon.png')")
-    // break;
-    // //Atmostphere
-    // case 701, 711, 721, 731, 741, 751, 761, 762, 771, 781:
-    // $("#backgroundTop").css("background-image", "url('./img/foggy_icon.png')")
-    //}
-
+    break; 
+  case "Rain":
+  $(".card-content").prepend('<img src="./img/rainy_icon.png" alt="" class="icon">')
+    break;
+  case "Haze":
+  $(".card-content").prepend('<img src="./img/foggy_icon.png" alt="" class="icon">')
+    break;
+  case "Thunderstorm":
+  $(".card-content").prepend('<img src="./img/thunderstorm_icon.png" alt="" class="icon">')
+    break;
+    }
   })
 }
+  
 
-
-
-
+    
+    
+    
+    
 
 
 
