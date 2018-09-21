@@ -1,9 +1,58 @@
 var lat;
 var long;
 var db = firebase.database();
-var favs = db.ref("favorites");
+var users = db.ref("users");
 var weather;
+var user;
 
+//this is for the login pop-up window
+$(document).ready(function()
+{
+  user = localStorage.username.toLowerCase() + localStorage.pass.toLowerCase();
+  console.log(localStorage.username);
+  if (localStorage.username !== "") {
+    $("#userBtn").html(`Welcome ${localStorage.username}!`);
+    $("#openLogin").attr("onclick", "");
+  }
+  setTimeout( getFavorites, 500 );
+  
+ $("#show_login").click(function(){
+  showpopup();
+ });
+ $("#close_login").click(function(){
+  hidepopup();
+ });
+});
+
+function signOut() {
+  localStorage.removeItem("username");
+  localStorage.removeItem("pass");
+  $("#userBtn").html(`Login`);
+  $("#openLogin").attr("onclick", "document.getElementById('modalWrap').style.display = 'block'");
+
+}
+
+function showpopup()
+{
+ $("#loginform").fadeIn();
+ $("#loginform").css({"visibility":"visible","display":"block"});
+}
+
+function setLogin () {
+  event.preventDefault();
+  localStorage.setItem("username", $("#uName").val())
+  localStorage.setItem("pass", $("#pswd").val())
+  document.getElementById('modalWrap').style.display = 'none';
+  $("#userBtn").html(`Welcome ${localStorage.username}!`);
+  $("#openLogin").attr("onclick", "");
+}
+
+function hidepopup()
+{
+ $("#loginform").fadeOut();
+ $("#loginform").css({"visibility":"hidden","display":"none"});
+}
+//Pop-up login window
 //If the user clicks anywhere outside of the login modal, it will close
 // var modal = document.getElementById('modalWrap');
 // window.onclick = function(event) {
@@ -56,7 +105,7 @@ function showPosition(position) {
         <p>${response.trails[i].summary}</p>
       </div>
        <div class="card-action">
-       <p class="addFavorite" data-id="${response.trails[i].id}">Add to Favorites</p>
+       <button href="#" class="addFavorite" data-id="${response.trails[i].id}">Add to Favorites<i class="material-icons right">thumb_up</i></button>
         </div>
     </div>
     </a>
@@ -72,14 +121,17 @@ function showPosition(position) {
    
 }
 
+//addFavorite
 $(document).on("click", ".addFavorite", function () {
-
-  favs.push($(this).attr("data-id"))
+  user =  localStorage.username.toLowerCase() + localStorage.pass.toLowerCase();
+  console.log(user)
+  firebase.database().ref('users/' + user + '/favorites').push($(this).attr("data-id"));
 })
 
+function getFavorites() {
+  firebase.database().ref('users/' + user + '/favorites').on("child_added", function (fav) {
 
-  favs.on("child_added", function (favorites) {
-    var hikingURL = `https://www.hikingproject.com/data/get-trails-by-id?ids=${favorites.val()}&key=200356178-455274bda6e2c8c2496858d99e90dcc7`;
+    var hikingURL = `https://www.hikingproject.com/data/get-trails-by-id?ids=${fav.val()}&key=200356178-455274bda6e2c8c2496858d99e90dcc7`;
 
     $.get(hikingURL)
       .then(function (response) {
@@ -102,7 +154,7 @@ $(document).on("click", ".addFavorite", function () {
         </div>
     </div>
     </a>
-    `)
+    `)    
   })
   weatherAPI(lat, long)
     setTimeout(function () {
@@ -110,6 +162,7 @@ $(document).on("click", ".addFavorite", function () {
       $('.carousel-slider').slider({ full_width: true });
     }, 500)
 })
+}
 
 function findLocation () {
   event.preventDefault();
@@ -143,7 +196,7 @@ function findLocation () {
         <p>${response.trails[i].summary}</p>
       </div>
        <div class="card-action">
-       <p class="addFavorite" data-id="${response.trails[i].id}">Add to Favorites</p>
+       <button href="#" class="addFavorite" data-id="${response.trails[i].id}">Add to Favorites<i class="material-icons right">thumb_up</i></button>
         </div>
     </div>
     </a>
