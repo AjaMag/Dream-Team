@@ -12,6 +12,15 @@ input[type=text], input[type=password] {
   display:inline-block;
 }
 
+html,body
+{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden; 
+}
+
 #cityName {
   color: white;
 }
@@ -187,3 +196,20 @@ div:empty {
   text-align: center; 
 }
 
+@media screen and (max-width: 415px){
+  .brand-logo {
+    font-size: 25px !important;
+  }
+}
+
+@media screen and (min-width: 375px){
+  .brand-logo {
+    font-size: 20px !important;
+  }
+}
+
+@media screen and (min-width: 320px){
+  .brand-logo {
+    font-size: 18px !important;
+  }
+}
