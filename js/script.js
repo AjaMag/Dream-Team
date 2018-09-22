@@ -24,6 +24,10 @@ $(document).ready(function()
  });
 });
 
+function loginPopUp() {
+  document.getElementById('modalWrap').style.display='block'
+}
+
 function signOut() {
   localStorage.removeItem("username");
   localStorage.removeItem("pass");
@@ -32,11 +36,6 @@ function signOut() {
   $("#favholder").empty();
 }
 
-function showpopup()
-{
- $("#loginform").fadeIn();
- $("#loginform").css({"visibility":"visible","display":"block"});
-}
 
 function setLogin () {
   event.preventDefault();
