@@ -19,16 +19,16 @@
         <a href="#!" class="brand-logo"><i class="fa fa-leaf"></i>Tinder Me Timbers</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-          <li onclick="loginPopUp()"><a href="#">Login</a></li>
-          <li><a href="signup.html">Create New Account</a></li>
-          <li><a href="#">Most Popular Hikes</a></li>
+          <li><a class="userBtn" onclick="loginPopUp()">Login</a></li>
+          <li><a onclick="signOut()">Sign Out</a></li>
+          <li><a onclick="goToFavs()">My Favorites</a></li>
         </ul>
       </div>
     </nav>
     <ul class="sidenav" id="mobile-demo">
-      <li onclick="loginPopUp()"><a href="#">Login</a></li>
-      <li><a href="signup.html">Create New Account</a></li>
-      <li><a href="#">Most Popular Hikes</a></li>
+      <li><a class="userBtn" onclick="loginPopUp()">Login</a></li>
+      <li><a onclick="signOut()" >Sign Out</a></li>
+      <li><a onclick="goToFavs()">My Favorites</a></li>
     </ul>
 <!-- pop-up login -->
     <div id="modalWrap" class="modal">
@@ -38,10 +38,9 @@
           <h3 display="text-align: center">Login</h3>
         </div>
         <div class="container">
-          <input type="text" placeholder="Enter Username" name="uName">
-          <input type="password" placeholder= "Enter Password" name="pswd">
-          <button class="btnL" type="submit">Submit</button>
-          <a href="#" style="float:right; margin-bottom:35px;">Forgot Password ?</a>
+          <input type="text" placeholder="Enter Username" id="uName" name="uName">
+          <input type="password" placeholder= "Enter Password" id="pswd" name="pswd">
+          <button class="btnL" onclick="setLogin()" type="submit">Submit</button>
         </div>
     </div>  
     
@@ -56,7 +55,7 @@
             <h2 class="header">Find Your Trail Here</h2>
             <div id="border"></div>
             <p class="white-text text-darken-3 lighten-3 " >Enter trail location or city</p>
-          <div id="input"class="input-field col s4">
+          <div id="input" class="input-field col s4">
             <input placeholder="City Name" id="cityName" type="text" class="validate">
             <label for="cityInput"></label>
           </div>

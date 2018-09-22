@@ -86,7 +86,7 @@ input[type=text], input[type=password] {
 
 button
 {
- background-color:rgb(255, 255, 255);
+ background-color: rgb(82, 116, 146);
  color: white;
  padding: 14px 10px;
  cursor: pointer;
@@ -187,10 +187,9 @@ div:empty {
   text-align: center; 
 }
 
-<<<<<<< HEAD
+
 @media (max-height: 375px) {
-=======
-<<<<<<< HEAD
+
 /* @media (max-width: 980 px) {
   .parallax {
       background-attachment: fixed !important;
@@ -198,14 +197,14 @@ div:empty {
 
 } */
 } 
-=======
+
 @media (max-height: 376px) {
->>>>>>> ee663b25b548967191eac8de2a0d42866d536284
+
   
-<<<<<<< HEAD
+
   
 }
-=======
+
   html {
     height: 667px;
   }
@@ -227,8 +226,4 @@ div:empty {
     max-height: 667px;
   }
 } */
-<<<<<<< HEAD
->>>>>>> 7da79606e2a1ae6485f2c126cc0d199fe2fa70d4
-=======
->>>>>>> 57f1e1d9881652919d79d22c1200dc24cc08b0d9
->>>>>>> ee663b25b548967191eac8de2a0d42866d536284
+

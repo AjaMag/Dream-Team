@@ -1,5 +1,5 @@
-var lat;
-var long;
+var lat = 0;
+var long = 0;
 var db = firebase.database();
 var users = db.ref("users");
 var weather;
@@ -11,17 +11,11 @@ $(document).ready(function()
   user = localStorage.username.toLowerCase() + localStorage.pass.toLowerCase();
   console.log(localStorage.username);
   if (localStorage.username !== "") {
-    $("#userBtn").html(`Welcome ${localStorage.username}!`);
-    $("#openLogin").attr("onclick", "");
+    $(".userBtn").html(`Welcome ${localStorage.username}!`);
+    $(".userBtn").attr("onclick", "");
   }
   setTimeout( getFavorites, 500 );
   
- $("#show_login").click(function(){
-  showpopup();
- });
- $("#close_login").click(function(){
-  hidepopup();
- });
 });
 
 function loginPopUp() {
@@ -31,11 +25,16 @@ function loginPopUp() {
 function signOut() {
   localStorage.removeItem("username");
   localStorage.removeItem("pass");
-  $("#userBtn").html(`Login`);
-  $("#openLogin").attr("onclick", "document.getElementById('modalWrap').style.display = 'block'");
+  $(".userBtn").html(`Login`);
+  $(".userBtn").attr("onclick", "loginPopUp()");
   $("#favholder").empty();
 }
 
+function goToFavs() {
+  $([document.documentElement, document.body]).animate({
+    scrollTop: $("#favholder").offset().top
+  }, 1000);
+}
 
 function setLogin () {
   event.preventDefault();
@@ -43,8 +42,8 @@ function setLogin () {
   localStorage.setItem("pass", $("#pswd").val())
   user = localStorage.username.toLowerCase() + localStorage.pass.toLowerCase();
   document.getElementById('modalWrap').style.display = 'none';
-  $("#userBtn").html(`Welcome ${localStorage.username}!`);
-  $("#openLogin").attr("onclick", "");
+  $(".userBtn").html(`Welcome ${localStorage.username}!`);
+  $(".userBtn").attr("onclick", "");
   getFavorites()
 }
 
@@ -119,7 +118,7 @@ function showPosition(position) {
         <p>${response.trails[i].summary}</p>
       </div>
        <div class="card-action">
-       <button href="#" class="addFavorite" data-id="${response.trails[i].id}">Add to Favorites<i class="material-icons right">thumb_up</i></button>
+       <button class="addFavorite btn" data-id="${response.trails[i].id}">Add to Favorites<i class="material-icons right">thumb_up</i></button>
         </div>
     </div>
     </a>
@@ -132,7 +131,8 @@ function showPosition(position) {
      }, 500)
      console.log(response)
    })
-   
+   lat = 0;
+   long = 0;
 }
 
 //addFavorite
@@ -170,7 +170,6 @@ function getFavorites() {
     </a>
     `)    
   })
-  weatherAPI(lat, long)
     setTimeout(function () {
       $('#favholder').carousel();
       $('.carousel-slider').slider({ full_width: true });
@@ -184,17 +183,14 @@ function findLocation () {
   var local = $("#cityName").val();
   $.get(`https://dev.virtualearth.net/REST/v1/Locations/${local}?&maxResults=1&key=Ami0rQuZG9aaTceHF0XA2qTY0BWc1D5gUXmI0R1VJ_URY8sHjBb4ksEK85edNRjY`)
   .then(function (localResponse) {
-    console.log(localResponse);
     lat = localResponse.resourceSets[0].resources[0].point.coordinates[0];
     long = localResponse.resourceSets[0].resources[0].point.coordinates[1];
+
     var hikingURL = `https://www.hikingproject.com/data/get-trails?maxResults=20&lat=${lat}&lon=${long}&maxDistance=10&key=200356178-455274bda6e2c8c2496858d99e90dcc7`;
-   
-  
-    
-    
    
     $.get(hikingURL)
     .then(function (response) {
+     
       $("#cardholder").empty();
         for (i = 0; i < response.trails.length; i++) {
           $("#cardholder").append(`
@@ -210,7 +206,7 @@ function findLocation () {
         <p>${response.trails[i].summary}</p>
       </div>
        <div class="card-action">
-       <button href="#" class="addFavorite" data-id="${response.trails[i].id}">Add to Favorites<i class="material-icons right">thumb_up</i></button>
+       <button class="addFavorite btn" data-id="${response.trails[i].id}">Add to Favorites<i class="material-icons right">thumb_up</i></button>
         </div>
     </div>
     </a>
@@ -223,7 +219,17 @@ function findLocation () {
         }, 500)
         console.log(response)
       })
-  })
+    }).then(setTimeout(function () {
+      if ($("#cardholder").has("a").length) {
+      $("#cityName").val("");
+      $("#cityName").attr("placeholder", "City Name");
+    }
+    else {  
+      $("#cityName").attr("placeholder", "No Results Found");
+      $("#cityName").val("");
+    }
+}, 1000))
+
 }
 
 //Weather API call
