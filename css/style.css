@@ -12,6 +12,14 @@ input[type=text], input[type=password] {
   display:inline-block;
 }
 
+#cityName {
+  color: white;
+}
+
+.header {
+  font-family: 'Bangers', cursive;
+}
+
 .nav-wrapper {
   background-color:rgb(76, 79, 88);
   padding-left: 5%;
