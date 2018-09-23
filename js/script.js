@@ -8,6 +8,18 @@ var user;
 //this is for the login pop-up window
 $(document).ready(function()
 {
+  // ShowMap();
+  // $("#cardholder").click(function () { alert('b'); });
+
+  $("#cardholder").click(function () {
+    //alert('a');
+    setTimeout(function () {
+      //console.log($(".carousel-item.active"));
+      ShowMap();
+    }, 500);
+  });
+
+
   user = localStorage.username.toLowerCase() + localStorage.pass.toLowerCase();
   console.log(localStorage.username);
   if (localStorage.username !== "") {
@@ -15,6 +27,8 @@ $(document).ready(function()
     $(".userBtn").attr("onclick", "");
   }
   setTimeout( getFavorites, 500 );
+  
+
   
 });
 
@@ -106,7 +120,8 @@ function showPosition(position) {
      $("#cardholder").empty();
     for (i = 0; i < response.trails.length; i++) {
     $("#cardholder").append(`
-    <a class="carousel-item">  
+    <a class="carousel-item" data-Mylat="${response.trails[i].latitude}" 
+    data-Mylon="${response.trails[i].longitude}"  data-MyName="${response.trails[i].name}"  data-myLoc="${response.trails[i].location}" >  
     <div class="card">
       <div class="card-image">
         <img src="${response.trails[i].imgSmallMed}" onerror="this.onerror=null;this.src='img/defaultpic.png'">
@@ -194,8 +209,8 @@ function findLocation () {
       $("#cardholder").empty();
         for (i = 0; i < response.trails.length; i++) {
           $("#cardholder").append(`
-    <a class="carousel-item">  
-    <div class="card">
+   <a class="carousel-item"  data-Mylat="${response.trails[i].latitude}" 
+    data-Mylon="${response.trails[i].longitude}"  data-MyName="${response.trails[i].name}"  data-myLoc="${response.trails[i].location}" > 
       <div class="card-image">
         <img src="${response.trails[i].imgSmallMed}" onerror="this.onerror=null;this.src='img/defaultpic.png'">
         <span class="card-title">${response.trails[i].name}</span>
@@ -232,6 +247,7 @@ function findLocation () {
 
 }
 
+
 //Weather API call
 function weatherAPI (lat, long) {
   
@@ -242,39 +258,58 @@ function weatherAPI (lat, long) {
     url: queryURL,
     method: "GET"
   })
-
+  
   .then(function(response) {
-  console.log(response)
-  var results = response.data;
-
+    console.log(response)
+    var results = response.data;
+    
 //Weather Icon Conditionals
 weather = response.weather[0].main;
-  
+
 console.log(weather);
 //weather options - "Clear", "Clouds", "Mist", "Rain", "Haze"
 switch (weather) {
   case "Clear":
   $(".card-content").prepend('<img src="./img/Sunny_icon.png" alt="" class="icon">')
     break;
-  case "Clouds":
-  $(".card-content").prepend('<img src="./img/cloudy_icon.png" alt="" class="icon">')
+    case "Clouds":
+    $(".card-content").prepend('<img src="./img/cloudy_icon.png" alt="" class="icon">')
     break;
-  case "Mist":
+    case "Mist":
   $(".card-content").prepend('<img src="./img/foggy_icon.png" alt="" class="icon">')
-    break; 
+  break; 
   case "Rain":
   $(".card-content").prepend('<img src="./img/rainy_icon.png" alt="" class="icon">')
-    break;
+  break;
   case "Haze":
   $(".card-content").prepend('<img src="./img/foggy_icon.png" alt="" class="icon">')
     break;
-  case "Thunderstorm":
-  $(".card-content").prepend('<img src="./img/thunderstorm_icon.png" alt="" class="icon">')
+    case "Thunderstorm":
+    $(".card-content").prepend('<img src="./img/thunderstorm_icon.png" alt="" class="icon">')
     break;
-    }
-  })
+  }
+})
 }
-  
+
+
+function ShowMap() {
+  document.getElementById('mymap').innerHTML = "<div id='map' style='height:600px;width:600px' ></div>";
+  var lat = $(".carousel-item.active").attr("data-mylat");
+  var longt = $(".carousel-item.active").attr("data-mylon");
+  var name = $(".carousel-item.active").attr("data-myname");
+  var locationt = $(".carousel-item.active").attr("data-myloc");
+  var TrailCoordinates = [lat, longt];////[33.683492099999995, -117.75086390000001]//
+  tomtom.setProductInfo('<your-product-id>', '<your-product-version>');
+  var map = tomtom.L.map('map', {
+    key: "C6NrG0gPZdXA0IVSWigw0gAkxAD8ZJPc",
+    basePath: 'SDK',
+    center: TrailCoordinates,
+    zoom: 15
+
+  });
+  var marker = tomtom.L.marker(TrailCoordinates).addTo(map);
+  marker.bindPopup("<b>" + name + "</b><br/>" + locationt).openPopup();//("<b>Costa Mesa, California</b><br/>").openPopup();
+}
 
     
     

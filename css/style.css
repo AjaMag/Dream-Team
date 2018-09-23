@@ -240,3 +240,10 @@ div:empty {
   }
 } 
 
+#map
+{
+ 
+  height: 500px; 
+  width: 500px; 
+  margin: 53.5%;
+}
