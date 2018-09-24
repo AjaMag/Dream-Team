@@ -8,20 +8,16 @@ var user;
 //this is for the login pop-up window
 $(document).ready(function()
 {
-  // ShowMap();
-  // $("#cardholder").click(function () { alert('b'); });
-
+  $('.parallax').parallax();
+  $('.sidenav').sidenav();
   $("#cardholder").click(function () {
-    //alert('a');
     setTimeout(function () {
-      //console.log($(".carousel-item.active"));
       ShowMap();
     }, 500);
   });
 
 
   user = localStorage.username.toLowerCase() + localStorage.pass.toLowerCase();
-  console.log(localStorage.username);
   if (localStorage.username !== "") {
     $(".userBtn").html(`Welcome ${localStorage.username}!`);
     $(".userBtn").attr("onclick", "");
@@ -61,15 +57,7 @@ function setLogin () {
   getFavorites()
 }
 
-//this is for the Mobile-Responsive Hamburger Nav Menu
-$(document).ready(function(){
-  $('.sidenav').sidenav();
-});  
-function hidepopup()
-{
- $("#loginform").fadeOut();
- $("#loginform").css({"visibility":"hidden","display":"none"});
-}
+
 //Pop-up login window
 //If the user clicks anywhere outside of the login modal, it will close
 // var modal = document.getElementById('modalWrap');
@@ -80,12 +68,7 @@ function hidepopup()
 // }
 
 //this is for the parallax, which displays today's current weather pic using a key word from the weather API
-var pArr = ['img/cloudy_day.jpg', 'img/sunny_day.jpg', 'img/rainy day.jpg']
- 
-$(document).ready(function(){
-  $('.parallax').parallax();
-});
-//parallax    
+var pArr = ['img/cloudy_day.jpg', 'img/sunny_day.jpg', 'img/rainy day.jpg']   
 
 function getLocation() {
   event.preventDefault();
@@ -97,7 +80,6 @@ function getLocation() {
 //Checking if favRow is empty
 window.onload = function () {
   if ( $.trim( $('#favholder').text() ).length == 0 ) {
-    console.log("heloo0pooodsafuh")
     $('.carouselHidden').css("display", "none")
     // check if div is empty, with &amp;nbsp; or white-space
   }
@@ -108,52 +90,46 @@ function showPosition(position) {
   lat = position.coords.latitude;
   long = position.coords.longitude;
 
-  console.log(lat, long)
   var hikingURL = `https://www.hikingproject.com/data/get-trails?maxResults=20&lat=${lat}&lon=${long}&maxDistance=10&key=200356178-455274bda6e2c8c2496858d99e90dcc7`;
   
-
-  weatherAPI(lat, long)
   
-
-   $.get(hikingURL)
-   .then(function(response) {
-     $("#cardholder").empty();
+  
+  $.get(hikingURL)
+  .then(function(response) {
+    $("#cardholder").empty();
     for (i = 0; i < response.trails.length; i++) {
-    $("#cardholder").append(`
-    <a class="carousel-item" data-Mylat="${response.trails[i].latitude}" 
-    data-Mylon="${response.trails[i].longitude}"  data-MyName="${response.trails[i].name}"  data-myLoc="${response.trails[i].location}" >  
-    <div class="card">
+      $("#cardholder").append(`
+      <a class="carousel-item" data-Mylat="${response.trails[i].latitude}" 
+      data-Mylon="${response.trails[i].longitude}"  data-MyName="${response.trails[i].name}"  data-myLoc="${response.trails[i].location}" >  
+      <div class="card">
       <div class="card-image">
-        <img src="${response.trails[i].imgSmallMed}" onerror="this.onerror=null;this.src='img/defaultpic.png'">
-        <span class="card-title">${response.trails[i].name}</span>
+      <img src="${response.trails[i].imgSmallMed}" onerror="this.onerror=null;this.src='img/defaultpic.png'">
+      <span class="card-title">${response.trails[i].name}</span>
       </div>
-      <div class="card-content">
-        <p>${response.trails[i].location}</p>
-        <br>
-        <p>${response.trails[i].summary}</p>
+      <div class="card-content nonFav">
+      <p>${response.trails[i].location}</p>
+      <br>
+      <p>${response.trails[i].summary}</p>
       </div>
-       <div class="card-action">
-       <button class="addFavorite btn" data-id="${response.trails[i].id}">Add to Favorites<i class="material-icons right">thumb_up</i></button>
-        </div>
-    </div>
-    </a>
-    `)
+      <div class="card-action">
+      <button class="addFavorite btn" data-id="${response.trails[i].id}">Add to Favorites<i class="material-icons right">thumb_up</i></button>
+      </div>
+      </div>
+      </a>
+      `)
     }
     
+    weatherAPI(lat, long)
      setTimeout(function () {
        $('.carousel').carousel();
        $('.carousel-slider').slider({ full_width: true });
      }, 500)
-     console.log(response)
    })
-   lat = 0;
-   long = 0;
 }
 
 //addFavorite
 $(document).on("click", ".addFavorite", function () {
   user =  localStorage.username.toLowerCase() + localStorage.pass.toLowerCase();
-  console.log(user)
   firebase.database().ref('users/' + user + '/favorites').push($(this).attr("data-id"));
 })
 
@@ -164,8 +140,6 @@ function getFavorites() {
 
     $.get(hikingURL)
       .then(function (response) {
-
-        console.log(response)
           $("#favholder").append(`
     <a class="carousel-item">  
     <div class="card">
@@ -209,22 +183,23 @@ function findLocation () {
       $("#cardholder").empty();
         for (i = 0; i < response.trails.length; i++) {
           $("#cardholder").append(`
-   <a class="carousel-item"  data-Mylat="${response.trails[i].latitude}" 
-    data-Mylon="${response.trails[i].longitude}"  data-MyName="${response.trails[i].name}"  data-myLoc="${response.trails[i].location}" > 
+        <a class="carousel-item" data-Mylat="${response.trails[i].latitude}" 
+      data-Mylon="${response.trails[i].longitude}"  data-MyName="${response.trails[i].name}"  data-myLoc="${response.trails[i].location}" >  
+      <div class="card">
       <div class="card-image">
-        <img src="${response.trails[i].imgSmallMed}" onerror="this.onerror=null;this.src='img/defaultpic.png'">
-        <span class="card-title">${response.trails[i].name}</span>
+      <img src="${response.trails[i].imgSmallMed}" onerror="this.onerror=null;this.src='img/defaultpic.png'">
+      <span class="card-title">${response.trails[i].name}</span>
       </div>
-      <div class="card-content" class="col-md-11">
-        <p>${response.trails[i].location}</p>
-        <br>
-        <p>${response.trails[i].summary}</p>
+      <div class="card-content nonFav">
+      <p>${response.trails[i].location}</p>
+      <br>
+      <p>${response.trails[i].summary}</p>
       </div>
-       <div class="card-action">
-       <button class="addFavorite btn" data-id="${response.trails[i].id}">Add to Favorites<i class="material-icons right">thumb_up</i></button>
-        </div>
-    </div>
-    </a>
+      <div class="card-action">
+      <button class="addFavorite btn" data-id="${response.trails[i].id}">Add to Favorites<i class="material-icons right">thumb_up</i></button>
+      </div>
+      </div>
+      </a>
     `)
         }
         weatherAPI(lat, long)
@@ -232,7 +207,6 @@ function findLocation () {
           $('.carousel').carousel();
           $('.carousel-slider').slider({ full_width: true });
         }, 500)
-        console.log(response)
       })
     }).then(setTimeout(function () {
       if ($("#cardholder").has("a").length) {
@@ -260,32 +234,29 @@ function weatherAPI (lat, long) {
   })
   
   .then(function(response) {
-    console.log(response)
     var results = response.data;
     
 //Weather Icon Conditionals
 weather = response.weather[0].main;
 
-console.log(weather);
-//weather options - "Clear", "Clouds", "Mist", "Rain", "Haze"
 switch (weather) {
   case "Clear":
-  $(".card-content").prepend('<img src="./img/Sunny_icon.png" alt="" class="icon">')
+  $(".nonFav").prepend('<img src="./img/Sunny_icon.png" alt="" class="icon">')
     break;
     case "Clouds":
-    $(".card-content").prepend('<img src="./img/cloudy_icon.png" alt="" class="icon">')
+    $(".nonFav").prepend('<img src="./img/cloudy_icon.png" alt="" class="icon">')
     break;
     case "Mist":
-  $(".card-content").prepend('<img src="./img/foggy_icon.png" alt="" class="icon">')
+  $(".nonFav").prepend('<img src="./img/foggy_icon.png" alt="" class="icon">')
   break; 
   case "Rain":
-  $(".card-content").prepend('<img src="./img/rainy_icon.png" alt="" class="icon">')
+  $(".nonFav").prepend('<img src="./img/rainy_icon.png" alt="" class="icon">')
   break;
   case "Haze":
-  $(".card-content").prepend('<img src="./img/foggy_icon.png" alt="" class="icon">')
+  $(".nonFav").prepend('<img src="./img/foggy_icon.png" alt="" class="icon">')
     break;
     case "Thunderstorm":
-    $(".card-content").prepend('<img src="./img/thunderstorm_icon.png" alt="" class="icon">')
+    $(".nonFav").prepend('<img src="./img/thunderstorm_icon.png" alt="" class="icon">')
     break;
   }
 })
@@ -298,7 +269,7 @@ function ShowMap() {
   var longt = $(".carousel-item.active").attr("data-mylon");
   var name = $(".carousel-item.active").attr("data-myname");
   var locationt = $(".carousel-item.active").attr("data-myloc");
-  var TrailCoordinates = [lat, longt];////[33.683492099999995, -117.75086390000001]//
+  var TrailCoordinates = [lat, longt];
   tomtom.setProductInfo('<your-product-id>', '<your-product-version>');
   var map = tomtom.L.map('map', {
     key: "C6NrG0gPZdXA0IVSWigw0gAkxAD8ZJPc",
@@ -308,7 +279,7 @@ function ShowMap() {
 
   });
   var marker = tomtom.L.marker(TrailCoordinates).addTo(map);
-  marker.bindPopup("<b>" + name + "</b><br/>" + locationt).openPopup();//("<b>Costa Mesa, California</b><br/>").openPopup();
+  marker.bindPopup("<b>" + name + "</b><br/>" + locationt).openPopup();
 }
 
     

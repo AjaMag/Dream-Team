@@ -209,18 +209,14 @@ div:empty {
 
 @media (max-height: 376px) {
 
-  
-
-  
-}
-
   html {
     height: 667px;
   }
-
+  
   body {
     max-height: 667vh;
   }
+}
   
 @media screen and (max-width: 415px){
   .brand-logo {
