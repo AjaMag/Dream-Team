@@ -264,7 +264,7 @@ switch (weather) {
 
 
 function ShowMap() {
-  document.getElementById('mymap').innerHTML = "<div id='map' style='height:600px;width:600px' ></div>";
+  document.getElementById('mymap').innerHTML = "<div id='map'  class='MyMapStyle' ></div>";
   var lat = $(".carousel-item.active").attr("data-mylat");
   var longt = $(".carousel-item.active").attr("data-mylon");
   var name = $(".carousel-item.active").attr("data-myname");

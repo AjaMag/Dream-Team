@@ -236,10 +236,51 @@ div:empty {
   }
 } 
 
-#map
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px)
+{
+  .MyMapStyle{
+    width: 355;
+    height: 600px;
+    
+  }
+}
+
+/* @media  screen and (max-wdith: 375px){
+  .MyMapStyle{
+    width: 355;
+    height: 600px;
+    
+  }
+    
+  } */
+
+
+
+/* #map
 {
  
   height: 500px; 
   width: 500px; 
   margin: 53.5%;
+} */
+
+
+
+@media  screen and (min-wdith: 700px)
+{
+  .MyMapStyle{
+  height:600px;
+  width:600px;
+}
+
+}
+@media screen and (max-width: 900px) and (min-width: 600px), (min-width: 1024px) {
+  .MyMapStyle{
+  height:600px;
+  width:600px;
+  margin: 50%;
+  margin-top: -96px;
+}
 }
