@@ -258,8 +258,8 @@ switch (weather) {
     case "Thunderstorm":
     $(".nonFav").prepend('<img src="./img/thunderstorm_icon.png" alt="" class="icon">')
     break;
-  }
-})
+    }
+  })
 }
 
 
